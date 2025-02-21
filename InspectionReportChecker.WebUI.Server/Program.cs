@@ -1,6 +1,6 @@
 using InspectionReportChecker.Application;
-using InspectionReportChecker.Components;
 using InspectionReportChecker.Infrastructure;
+using InspectionReportChecker.WebUI.Server.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
