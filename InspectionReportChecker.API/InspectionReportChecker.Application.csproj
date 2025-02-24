@@ -15,9 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
     <Folder Include="DTOs\" />
-    <Folder Include="API stuff here\" />
   </ItemGroup>
 
 </Project>

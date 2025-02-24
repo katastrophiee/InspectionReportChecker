@@ -1,9 +1,21 @@
-﻿@inherits LayoutComponentBase
+﻿@using InspectionReportChecker.WebUI.Server.Components.Pages
+@inherits LayoutComponentBase
 
-@Body
+<div>
+    <main>
+        <div class="">
+            @* Add nav bar here *@
+        </div>
 
-<div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
+        <article class="content px-4">
+            <ErrorBoundary>
+                <ChildContent>
+                    @Body
+                </ChildContent>
+                <ErrorContent>
+                    <Error/>
+                </ErrorContent>
+            </ErrorBoundary>
+        </article>
+    </main>
 </div>
