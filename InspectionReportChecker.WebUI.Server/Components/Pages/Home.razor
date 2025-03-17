@@ -1,12 +1,25 @@
 ﻿@page "/"
-@rendermode InteractiveServer
+@using InspectionReportChecker.WebUI.Server.Components
 
 <PageTitle>Home</PageTitle>
 
 <h1>Home</h1>
 
 <ErrorBoundary>
-    <div>
-        my page here!
-    </div>
+    <ChildContent>
+        <div>
+            @if (Report is not null)
+            {
+                <p>Report ID: @Report.Id</p>
+                @* <p>Report Name: @Report.Name</p> *@
+            }
+            else
+            {
+                <p>Loading report...</p>
+            }
+        </div>
+    </ChildContent>
+    <ErrorContent>
+        <p>An error occurred while loading the report.</p>
+    </ErrorContent>
 </ErrorBoundary>

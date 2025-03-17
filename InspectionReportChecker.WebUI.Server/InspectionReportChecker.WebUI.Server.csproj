@@ -10,8 +10,4 @@
     <ProjectReference Include="..\InspectionReportChecker.Infrastructure\InspectionReportChecker.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>
