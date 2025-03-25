@@ -1,25 +1,57 @@
 ﻿@page "/"
-@using InspectionReportChecker.WebUI.Server.Components
+@using InspectionReportChecker.WebUI.Server.Models
+@using InspectionReportChecker.WebUI.Server.Components.Shared
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
 <h1>Home</h1>
 
-<ErrorBoundary>
-    <ChildContent>
-        <div>
-            @if (Report is not null)
+<EditForm Model="SearchModel" OnValidSubmit="GetReports">
+    <DataAnnotationsValidator />
+    <div class="search-container">
+        <label for="searchTerm">Job ID:</label>
+        <input id="searchTerm" @bind="SearchModel.SearchTerm" class="form-control search-input" />
+        <button type="submit" class="btn btn-primary">Search</button>
+        <ValidationMessage For="@(() => SearchModel.SearchTerm)" />
+    </div>
+</EditForm>
+
+@if (IsLoading)
+{
+    <Loading />
+    return;
+}
+
+@if (!HasSeached)
+{
+    <div>Enter a job ID to search for reports.</div>
+    return;
+}
+
+@if (!IsLoading && (SearchModel.Results is null || !SearchModel.Results.Any()))
+{
+    <div>No jobs found</div>
+    return;
+}
+
+@if (SearchModel.Results?.Any() == true)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Job ID</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var report in SearchModel.Results)
             {
-                <p>Report ID: @Report.Id</p>
-                @* <p>Report Name: @Report.Name</p> *@
+                <tr>
+                    <td>@report.Id</td>
+                    <td><button>View</button></td>
+                </tr>
             }
-            else
-            {
-                <p>Loading report...</p>
-            }
-        </div>
-    </ChildContent>
-    <ErrorContent>
-        <p>An error occurred while loading the report.</p>
-    </ErrorContent>
-</ErrorBoundary>
+        </tbody>
+    </table>
+}

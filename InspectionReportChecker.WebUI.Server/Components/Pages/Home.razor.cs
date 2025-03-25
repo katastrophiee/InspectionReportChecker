@@ -11,17 +11,38 @@ public partial class Home
     public IInspectionReportProvider _inspectionReportProvider {  get; set; }
 
     [Parameter]
-    public HomeModel HomeModel { get; set; }
+    public SearchModel<InspectionReport> SearchModel { get; set; } = new();
 
-    public InspectionReport Report { get; set; }
+    public bool IsLoading { get; set; } = false;
 
-    protected override async Task OnInitializedAsync()
+    public bool HasSeached { get; set; } = false;
+
+    // keeping bc i'll probs need this in future
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    var lol = true;
+    //}
+
+    private async Task GetReports()
     {
-        Report = await GetReport();
-    }
+        IsLoading = true;
+        HasSeached = true;
 
-    private async Task<InspectionReport> GetReport()
-    {
-        return await _inspectionReportProvider.GetInspectionReportAsync(1);
+        if (string.IsNullOrEmpty(SearchModel.SearchTerm))
+        {
+            //return custom error here
+            return;
+        }
+
+        if (int.TryParse(SearchModel.SearchTerm, out int reportId))
+        {
+            SearchModel.Results = await _inspectionReportProvider.GetInspectionReportsById(reportId) ?? [];
+        }
+        else
+        {
+            SearchModel.Results = [];
+        }
+
+        IsLoading = false;
     }
 }

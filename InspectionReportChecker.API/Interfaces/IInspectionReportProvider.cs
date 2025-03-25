@@ -4,5 +4,7 @@ namespace InspectionReportChecker.Application.Interfaces;
 
 public interface IInspectionReportProvider
 {
-    public Task<InspectionReport> GetInspectionReportAsync(int reportId);
+    Task<List<InspectionReport>> GetInspectionReportsById(int reportId);
+
+    Task<InspectionReport> GetInspectionReport(int reportId);
 }
