@@ -8,20 +8,14 @@ namespace InspectionReportChecker.WebUI.Server.Components.Pages;
 public partial class Home
 {
     [Inject]
-    public IInspectionReportProvider _inspectionReportProvider {  get; set; }
+    public IJobsProvider _inspectionReportProvider {  get; set; }
 
     [Parameter]
-    public SearchModel<InspectionReport> SearchModel { get; set; } = new();
+    public SearchModel<Job> SearchModel { get; set; } = new();
 
     public bool IsLoading { get; set; } = false;
 
     public bool HasSeached { get; set; } = false;
-
-    // keeping bc i'll probs need this in future
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    var lol = true;
-    //}
 
     private async Task GetReports()
     {
@@ -36,7 +30,7 @@ public partial class Home
 
         if (int.TryParse(SearchModel.SearchTerm, out int reportId))
         {
-            SearchModel.Results = await _inspectionReportProvider.GetInspectionReportsById(reportId) ?? [];
+            SearchModel.Results = await _inspectionReportProvider.GetJobsById(reportId) ?? [];
         }
         else
         {

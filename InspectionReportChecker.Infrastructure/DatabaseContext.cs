@@ -1,4 +1,4 @@
-﻿using InspectionReportChecker.Domain.StoredProcedureResults;
+﻿using InspectionReportChecker.Domain.Models;
 using InspectionReportChecker.Infrastructure.EntityTypeConfiguration;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,7 +6,7 @@ namespace InspectionReportChecker.Infrastructure;
 
 public class DBContext(DbContextOptions<DBContext> options) : DbContext(options)
 {
-    public DbSet<InspectionReport> InspectionReport { get; set; }
+    public DbSet<Job> Job { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -1,4 +1,5 @@
 using InspectionReportChecker.Application;
+using InspectionReportChecker.Infrastructure;
 using InspectionReportChecker.WebUI.Server.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,9 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 builder.Services.AddApplication();
 
-// replace wi shit for blob storage or whatever im using atp
-//var connectionString = builder.Configuration.GetConnectionString("movex") ?? builder.Configuration["ConnectionString:Movex"];
-//builder.Services.AddInfrastructure(connectionString);
+// add shit for blob storage or whatever im using atp
+
+var connectionString = builder.Configuration.GetConnectionString("movex") ?? builder.Configuration["ConnectionString:Movex"];
+builder.Services.AddInfrastructure(connectionString);
 
 var app = builder.Build();
 

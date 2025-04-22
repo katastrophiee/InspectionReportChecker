@@ -9,7 +9,11 @@
             <span class="nav-separator">|</span>
             <ul class="nav-list">
                 <li>
-                    <NavLink href="" Match="NavLinkMatch.All" class="home-link" title="Home">
+                    <NavLink href="/"
+                        Match="NavLinkMatch.All"
+                        class="home-link"
+                        title="Home"
+                        onclick="if (window.location.pathname === '/') { window.location.reload(); }">
                         <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span>
                     </NavLink>
                 </li>

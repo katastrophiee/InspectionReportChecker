@@ -1,6 +1,4 @@
 ﻿@page "/"
-@using InspectionReportChecker.WebUI.Server.Models
-@using InspectionReportChecker.WebUI.Server.Components.Shared
 @rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
@@ -41,15 +39,27 @@
         <thead>
             <tr>
                 <th>Job ID</th>
+                <th>
+                    Overall Status
+                    <div class="tooltip">
+                        <i>?</i>
+                        <span class="tooltiptext">This is your overall status.</span>
+                    </div>
+                </th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var report in SearchModel.Results)
+            @foreach (var job in SearchModel.Results)
             {
                 <tr>
-                    <td>@report.Id</td>
-                    <td><button>View</button></td>
+                    <td>@job.Id</td>
+                    <td>Good - ADD INDICATOR</td>
+                    <td>
+                        <a href="/view-job/jobId=@job.Id">
+                            <button class="primary">View</button>
+                        </a>
+                    </td>
                 </tr>
             }
         </tbody>

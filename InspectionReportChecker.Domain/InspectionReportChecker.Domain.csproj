@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InspectionReportChecker.Common\InspectionReportChecker.Common.csproj" />
+  </ItemGroup>
+
 </Project>

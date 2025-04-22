@@ -1,0 +1,58 @@
+﻿@page "/view-job/jobId={JobId:int}"
+@rendermode InteractiveServer
+
+@if (IsLoading)
+{
+    <Loading />
+    return;
+}
+
+@if (!IsLoading && Job is null)
+{
+    <div>Job not found.</div>
+    return;
+}
+
+<h1>Job ID @Job?.Id</h1>
+
+<h2>Vehicles</h2>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Vehicle ID</th>
+                <th>VRM</th>
+                <th>POC Uploaded</th>
+                <th>POD Uploaded</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vehicle in Job.JobsVehicles)
+            {
+                <tr>
+                    <td>@vehicle.Id</td>
+                    <td>@vehicle.Vrm</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    - Job id
+    - vehicles in said job
+    - POC status for each vehicle
+    - POD status for each vehicle (make expandable maybe?)
+    - The name of the photographs in the “upload” Blob Storage container
+    - The name of the photographs in the “processed” Blob Storage container
+    - indicator for json upload
+    - if json, show json
+    - Retry processing an inspection report if the JSON is present
+        This should set the ForceReportCreation flag to true before sending the new request
+    - If the JSON is not present, a placeholder JSON file can be generated containing data based on the requesting member’s inspection report configuration. This should set any unknown values to UNKNOWN.
+    All uploaded images should be included where possible.
+    All uploaded damage images should be added as a new damage marker with a unique co-ordinate set and a default damage type should be selected
+    Assume that the first signature image uploaded is the agent on the requesting member’s side.
+    Assume that the second signature image uploaded is the driver.
+
+</div>

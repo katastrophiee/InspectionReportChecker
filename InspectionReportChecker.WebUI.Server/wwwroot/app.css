@@ -72,9 +72,6 @@ table {
 thead th {
     background-color: #0884ac;
     color: white;
-    font-weight: bold;
-    font-
-    text-transform: uppercase;
     letter-spacing: 0.05em;
     border-bottom: 2px solid #066d8a;
 }
@@ -106,3 +103,31 @@ tbody tr:hover {
     background-color: #e9ecef;
     cursor: pointer;
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 160px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -80px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
